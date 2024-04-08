@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./App.css";
 import authService from "./appwrite/auth";
-// import { login, logout } from "./store/authSlice";
-import Header from "./components/header";
-import Footer from "./components/footer";
+import { login, logout } from "./store/authSlice";
+import { Footer, Header } from "./components";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -12,36 +12,29 @@ function App() {
 
   useEffect(() => {
     authService
-      .createAccount({
-        email: "ss@ss.com",
-        password: "123456",
-        name: "shankar",
-      })
+      .getCurrentUser()
       .then((userData) => {
         if (userData) {
-          dispatch({ userData });
+          dispatch(login({ userData }));
         } else {
-          return;
+          dispatch(logout());
         }
       })
-      .catch((err) => {
-        console.log({ error: err });
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      .finally(() => setLoading(false));
   });
 
   return (
-    <div className="min-hsc">
+    <div className="min-h-screen flex flex-wrap content-between bg-white">
       {!loading ? (
-        <>
+        <div className=" w-screen block">
           <Header />
-          <div>content area</div>
+          <main>
+            <Outlet />
+          </main>
           <Footer />
-        </>
+        </div>
       ) : (
-        <div>loading...</div>
+        <p>Loading...</p>
       )}
     </div>
   );
