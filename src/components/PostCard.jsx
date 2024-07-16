@@ -19,8 +19,11 @@ function PostCard({ $id, title, featuredImage }) {
   }, [featuredImage]);
 
   return (
-    <Link to={`/post/${$id}`}>
-      <div className="w-full bg-gray-100 rounded-xl p-4">
+    <Link
+      to={`/post/${$id}`}
+      className="flex min-h-full bg-gray-100 border-2 border-gray-300 rounded-xl "
+    >
+      <div className="w-full  p-4">
         <div className="w-full justify-center mb-4">
           {imageSrc ? (
             <img src={imageSrc} alt={title} className="rounded-xl" />
