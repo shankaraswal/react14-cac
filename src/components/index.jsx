@@ -9,9 +9,9 @@ import Login from "./Login";
 import Button from "./Button";
 import AuthLayout from "./AuthLayout";
 import Input from "./Input";
-// import RTE from "./RTE";
-// import PostForm from "./post-form/PostForm";
-// import PostCard from "./PostCard";
+import RTE from "./RTE";
+import PostForm from "./post-form/PostForm";
+import PostCard from "./PostCard";
 export {
   Header,
   Footer,
@@ -24,7 +24,7 @@ export {
   AuthLayout,
   Input,
   Select,
-  //   RTE,
-  //   PostForm,
-  //   PostCard,
+  RTE,
+  PostForm,
+  PostCard,
 };

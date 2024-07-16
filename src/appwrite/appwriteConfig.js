@@ -24,7 +24,7 @@ export class Service {
       );
       return databases;
     } catch (error) {
-      console.log("createPost", error);
+      console.error("createPost", error);
       throw error;
     }
   }
@@ -39,7 +39,7 @@ export class Service {
       );
       return databases;
     } catch (error) {
-      console.log("updatePost", error);
+      console.error("updatePost", error);
       throw error;
     }
   }
@@ -53,7 +53,7 @@ export class Service {
       );
       return true;
     } catch (error) {
-      console.log("deletePost", error);
+      console.error("deletePost", error);
       throw error;
     }
   }
@@ -67,7 +67,7 @@ export class Service {
       );
       return databases;
     } catch (error) {
-      console.log("getSinglePost", error);
+      console.error("getSinglePost", error);
       throw error;
     }
   }
@@ -80,7 +80,7 @@ export class Service {
       );
       return databases;
     } catch (error) {
-      console.log("getPosts", error);
+      console.error("getPosts", error);
       throw error;
     }
   }
@@ -89,13 +89,13 @@ export class Service {
   async uploadFile(file) {
     try {
       const storage = await this.buckets.createFile(
-        config.appwriteBcketId,
+        config.appwriteBucketId,
         ID.unique(),
         file
       );
       return storage;
     } catch (error) {
-      console.log("uploadFile", error);
+      console.error("uploadFile", error);
       throw error;
     }
   }
@@ -103,10 +103,10 @@ export class Service {
   // delete file
   async deleteFile(fileId) {
     try {
-      await this.buckets.deleteFile(config.appwriteBcketId, fileId);
+      await this.buckets.deleteFile(config.appwriteBucketId, fileId);
       return true;
     } catch (error) {
-      console.log("deleteFile", error);
+      console.error("deleteFile", error);
       throw error;
     }
   }
@@ -114,13 +114,13 @@ export class Service {
   // get file preview
   async getFilePreview(fileId) {
     try {
-      const storage = await this.buckets.getFile(
-        config.appwriteBcketId,
+      const storage = await this.buckets.getFilePreview(
+        config.appwriteBucketId,
         fileId
       );
       return storage;
     } catch (error) {
-      console.log("getFilePreview", error);
+      console.error("getFilePreview", error);
       throw error;
     }
   }
